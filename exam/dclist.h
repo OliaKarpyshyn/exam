@@ -1,6 +1,7 @@
 #ifndef DCLIST_H
 #define DCLIST_H
 
+#include "datastructure.h"
 #include<iostream>
 #include <vector>
 using namespace std;
@@ -8,7 +9,7 @@ using namespace std;
 
 template<typename K,typename V>
 
-class DCList
+class DCList: public DataStructure<K,V>
 {
 	
 public:
@@ -17,9 +18,8 @@ public:
     void insert(K data,V value);
     void remove(K key);
     V find(K key);
-    void randomInsert();
     void writeGV(const char* filename);
-    vector<K> getKeys()override;
+    vector<tuple<K,V>> getKeys()override;
     void sort();
     
 private:
@@ -147,11 +147,6 @@ private:
         return nullptr;
     }
     
-    template<typename K, typename V>
-    void DCList<K,V>::randomInsert()
-    {
-        
-    }
     
     template<typename K, typename V>        
     void DCList<K,V>::writeGV(const char* filename) {
