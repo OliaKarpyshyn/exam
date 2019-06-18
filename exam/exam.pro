@@ -33,7 +33,8 @@ HEADERS += \
     dclist.h \
     datastructure.h \
     bplustree.h \
-    rbtree.h
+    rbtree.h \
+    stllist.h
 
 FORMS += \
         mainwindow.ui
