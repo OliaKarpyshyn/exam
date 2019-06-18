@@ -31,7 +31,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     dclist.h \
-    datastructure.h
+    datastructure.h \
+    bplustree.h
 
 FORMS += \
         mainwindow.ui
