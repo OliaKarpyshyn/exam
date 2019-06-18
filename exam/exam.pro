@@ -32,7 +32,8 @@ HEADERS += \
         mainwindow.h \
     dclist.h \
     datastructure.h \
-    bplustree.h
+    bplustree.h \
+    rbtree.h
 
 FORMS += \
         mainwindow.ui

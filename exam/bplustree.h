@@ -42,6 +42,7 @@ private:
     void deleteNode(BNode *curr, int value, int currPos);
     void getElem(vector <BNode*> Nodes, vector<tuple<K,V>>& v);
     void graphvizRec(vector <BNode*> Nodes, const char *filename);
+    V search(BNode * curr, K val);
 
 
 
@@ -68,7 +69,24 @@ public:
 template <typename K, typename V>
 V BplusTree<K, V>::find(K key)
 {
+    return search(root, key);
 }
+
+template <typename K, typename V>
+V BplusTree<K,V>::search(BNode * curr, K val){
+
+        if(curr->child[0]==nullptr)
+            for (int i = 0; i <= curr->nElems; i++) {
+            if (val == curr->value[i])
+                return curr->key[i];
+        }
+        for (int i = 0; i <= curr->nElems; i++) {
+            if (val < curr->value[i] && curr->child[i] != nullptr)
+                return search(curr->child[i], val);
+        }
+        return NULL;
+
+        }
 
 
 
@@ -353,6 +371,7 @@ bool dataFound;
 //видалення елемента
 template <typename K, typename V>
 void BplusTree<K, V>::remove(K val) {
+    dataFound=false;
     deleteNode(root, val, 0);
 }
 
