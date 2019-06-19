@@ -4,6 +4,8 @@
 #include <QInputDialog>
 #include <QRandomGenerator>
 #include <QMessageBox>
+#include <algorithm>
+#include <vector>
 
 
 
@@ -12,7 +14,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    s= new Set;
+    s = new Set;
+    sort = new Sorting<int,int>;
+
+    ui->comboSort->addItem("Quick sort");
+    ui->comboSort->addItem("Heap sort");
+    ui->comboSort->addItem("Selection sort");
+
+    ui->comboType->addItem("STL List");
+    ui->comboType->addItem("STL Map");
+    ui->comboType->addItem("STL Vector");
+    ui->comboType->addItem("Doublelinked cyclic List");
+    ui->comboType->addItem("Red-black tree");
+    ui->comboType->addItem("B+ tree");
+
 }
 
 MainWindow::~MainWindow()
@@ -164,4 +179,108 @@ void MainWindow::on_unionBtn_clicked()
         m.insert(get<0>(val), get<1>(val));
 
     createSet(m);
+}
+
+void MainWindow::on_intrsBnt_clicked()
+{
+    s->setLabel("Intersection");
+    StlList<int,int> l;
+    vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(), inters;
+
+    std::sort(v1.begin(), v1.end());
+    std::sort(v2.begin(), v2.end());
+
+    std::set_intersection(v1.begin(),v1.end(),
+                              v2.begin(),v2.end(),
+                              back_inserter(inters));
+    for(auto val : inters)
+        l.insert(get<0>(val), get<1>(val));
+
+    createSet(l);
+}
+
+
+
+
+
+void MainWindow::on_sdiffBtn_clicked()
+{
+    s->setLabel("SymDifference");
+    vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(),un, inters;
+    StlList<int,int> m;
+    for(auto val : v1)
+        un.push_back(val);//m.insert(get<0>(val), get<1>(val));
+
+    for(auto val : v2)
+        un.push_back(val);//m.insert(get<0>(val), get<1>(val));
+
+    std::sort(v1.begin(), v1.end());
+    std::sort(v2.begin(), v2.end());
+
+    std::set_intersection(v1.begin(),v1.end(),
+                              v2.begin(),v2.end(),
+                              back_inserter(inters));
+    bool f=false;
+    for(auto val : un){
+        for(auto v : inters){
+        if(get<0>(val)==get<0>(v) || get<1>(val)==get<1>(v)) {f=true; break;}
+    }
+        if(!f) m.insert(get<0>(val), get<1>(val));
+        f=false;
+}
+
+    createSet(m);
+
+}
+
+void MainWindow::on_diffBtn_clicked()
+{
+    s->setLabel("Difference");
+    vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(), inters;
+    StlList<int,int> m;
+
+    std::sort(v1.begin(), v1.end());
+    std::sort(v2.begin(), v2.end());
+
+    std::set_intersection(v1.begin(),v1.end(),
+                              v2.begin(),v2.end(),
+                              back_inserter(inters));
+    bool f=false;
+    for(auto val : v1){
+        for(auto v : inters){
+        if(get<0>(val)==get<0>(v) || get<1>(val)==get<1>(v)) {f=true; break;}
+    }
+        if(!f) m.insert(get<0>(val), get<1>(val));
+        f=false;
+}
+
+    createSet(m);
+}
+
+void MainWindow::on_comboSort_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_comboType_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_sortBtn_clicked()
+{
+    int choice = ui->comboSort->currentIndex();
+    vector<tuple<int,int>> before = ds->ds[ds->currentStructure]->getKeys();
+    sort->sort(before, choice);
+
+    for(auto val : before){
+        ds->ds[ds->currentStructure]->remove(get<0>(val));
+    }
+
+    for(auto val : before){
+        ds->ds[ds->currentStructure]->insert(get<0>(val), get<1>(val));
+    }
+
+    createImage();
+
 }

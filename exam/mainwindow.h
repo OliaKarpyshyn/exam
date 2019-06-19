@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "dsbridge.h"
+#include "sorting.h"
 #include "set.h"
 #include <QMainWindow>
 
@@ -36,6 +37,20 @@ private slots:
 
     void on_unionBtn_clicked();
 
+    void on_intrsBnt_clicked();
+
+    void on_sdiffBtn_clicked();
+
+    void on_diffBtn_clicked();
+
+    void on_comboSort_currentIndexChanged(int index);
+
+    void on_comboType_currentIndexChanged(int index);
+
+    void on_pushButton_9_clicked();
+
+    void on_sortBtn_clicked();
+
 private:
 
 
@@ -44,6 +59,7 @@ private:
 
     DSBridge<int,int>* ds = new DSBridge<int, int>();
     Set* s;
+    Sorting<int,int> *sort;
     void createImage();
     void clear();
     void createSet(StlList<int, int>);

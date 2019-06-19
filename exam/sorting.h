@@ -39,9 +39,9 @@ template<typename K, typename V>
 void Sorting<K,V>::sort(vector<tuple<K, V> > &v, int choice)
 {
     switch (choice) {
-        case 1: quickSort(v); break;
-        case 2: Heap_Sort(v,4); break;
-        case 3: SelectionSort(v); break;
+        case 0: quickSort(v); break;
+        case 1: Heap_Sort(v, v.size()); break;
+        case 2: SelectionSort(v); break;
     default: break;
     }
 }

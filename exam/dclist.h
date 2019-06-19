@@ -181,7 +181,19 @@ public:
             cur = cur->getNext();
         }
 
-        fout << "->end;\n";
+        fout << "->" << (quintptr)cur << ";\n";
+        cur = head;
+
+        fout << (quintptr)cur;
+        cur = cur->getPrev();
+        while (cur!=head) {
+            fout << "->" << (quintptr)cur << ";\n";
+            fout << (quintptr)cur;
+            cur = cur->getPrev();
+        }
+
+fout << "->" << (quintptr)cur << ";\n";
+
         fout << "}";
     }
 

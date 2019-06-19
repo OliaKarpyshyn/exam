@@ -47,8 +47,8 @@ template<typename K, typename V>
 DSBridge<K,V>::DSBridge()
 {
 
-    ds.push_back( new StlList<K,V>());
-    ds.push_back( new StlList<K,V>());
+    ds.push_back( new DCList<K,V>());
+    ds.push_back( new DCList<K,V>());
     //ds[1] = new StlList<K,V>();
     currentStructure = 0;
 }
