@@ -1,0 +1,77 @@
+QWidget {
+ /*background-color: grey;*/
+ color:black;
+ font-family: "Segoe UI";
+ }
+
+QLabel{
+font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 8pt;
+color: black;
+font-weight: bold;
+text-align: center;
+}
+
+QPushButton {
+    border-style: outset;
+    border-color: black;
+    border-width: 2px;
+    /*background-color: white;*/
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 8pt;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+}
+
+QPushButton:hover {
+    background-color:lightgrey;
+}
+
+QPushButton:pressed, QPushButton:default:hover:pressed {
+    background-color: black;
+    color: white;
+}
+
+QRadioButton{
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 8pt;
+    color: black;
+    font-weight: bold;
+}
+
+QComboBox {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 6em;
+}
+
+QComboBox:editable {
+    background: #f2f2f2
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+     color:black;
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,
+                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);
+}
+
+QComboBox:on {
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QLabel {
+    font-size: 11pt;
+
+    opacity: 0.6;
+}
+

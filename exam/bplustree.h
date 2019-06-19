@@ -33,6 +33,7 @@ class BplusTree: public DataStructure<K,V>
 {
 
 private:
+    bool dataFound=false;
     int T = 4; //степінь [t = t + 1]
     void splitLeaf(BNode *curr);
     void splitNonLeaf(BNode *curr);
@@ -366,7 +367,6 @@ void BplusTree<K, V>::mergeCell(BNode *left, BNode *right, bool isLeaf, int posO
     }
 }
 
-bool dataFound;
 
 //видалення елемента
 template <typename K, typename V>

@@ -27,7 +27,8 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    code.cpp
+    code.cpp \
+    set.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,12 +40,19 @@ HEADERS += \
     stlvector.h \
     stlmap.h \
     code.h \
-    sorting.h
+    sorting.h \
+    dsbridge.h \
+    set.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    set.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    dot.exe \
+    stylesheet.qss
