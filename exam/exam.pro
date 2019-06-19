@@ -38,7 +38,8 @@ HEADERS += \
     stllist.h \
     stlvector.h \
     stlmap.h \
-    code.h
+    code.h \
+    sorting.h
 
 FORMS += \
         mainwindow.ui

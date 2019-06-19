@@ -8,11 +8,11 @@ public:
     Code();
     Code(QString, QString, QString, QString, QString);
 
-    bool operator<(const Code&other);
-    bool operator<=(const Code&other);
-    bool operator>(const Code&other);
-    bool operator>=(const Code&other);
-    bool operator==(const Code&other);
+    friend bool operator<(const Code&other, const Code&other1);
+    friend bool operator<=(const Code&other, const Code&other1);
+    friend bool operator>(const Code&other, const Code&other1);
+    friend bool operator>=(const Code&other, const Code&other1);
+    friend bool operator==(const Code&other, const Code&other1);
     friend std::ostream& operator<< (std::ostream &out, const Code &point);
 
 

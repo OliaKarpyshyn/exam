@@ -18,29 +18,29 @@ Code::Code(QString o, QString c, QString p, QString cm, QString m)
     method = m;
 }
 
-bool Code::operator<(const Code &other)
+bool operator<(const Code &other, const Code&other1)
 {
-    return method < other.method;
+    return other.method < other1.method;
 }
 
-bool Code::operator>(const Code &other)
+bool operator>(const Code &other, const Code&other1)
 {
-    return method > other.method;
+    return other.method > other1.method;
 }
 
-bool Code::operator<=(const Code &other)
+bool operator<=(const Code &other, const Code&other1)
 {
-    return method <= other.method;
+    return other.method <= other1.method;
 }
 
-bool Code::operator>=(const Code &other)
+bool operator>=(const Code &other, const Code&other1)
 {
-    return method >= other.method;
+    return other.method >= other1.method;
 }
 
-bool Code::operator==(const Code &other)
+bool operator==(const Code &other, const Code&other1)
 {
-    return method == other.method;
+    return other.method == other1.method;
 }
 
 std::ostream& operator<< (std::ostream &out, const Code &code)
