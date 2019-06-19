@@ -39,7 +39,7 @@ private:
         }
         
         V getVal() {
-            return key;
+            return value;
         }
         void setData(int data) {
             this->key = data;

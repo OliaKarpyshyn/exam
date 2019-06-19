@@ -264,6 +264,17 @@ void MainWindow::on_comboSort_currentIndexChanged(int index)
 
 void MainWindow::on_comboType_currentIndexChanged(int index)
 {
+    ds->changeType(index);
+    QGraphicsView *view = ds->currentStructure==0? ui->graphicsView: ui->graphicsView_2;
+    if(view->scene()!=nullptr)
+    {
+        view->scene()->clear();
+        view->scene()->deleteLater();
+    }
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
 
 }
 

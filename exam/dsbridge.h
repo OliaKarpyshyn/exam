@@ -56,15 +56,27 @@ DSBridge<K,V>::DSBridge()
 template<typename K, typename V>
 void DSBridge<K,V>::changeType(int t)
 {
-    delete ds[currentStructure];
     switch (t) {
-   /* case 0: ds[currentStructure] = new StlList<K,V>(); break;
-    case 1: ds[currentStructure] = new StlMap<K,V>(); break;
-    case 2: ds[currentStructure] = new StlVector<K,V>(); break;
-    case 3: ds[currentStructure] = new DCList<K,V>(); break;
-    case 4: ds[currentStructure] = new RBTree<K,V>(); break;
-    case 5: ds[currentStructure] = new BplusTree<K,V>(); break;*/
-    default: break;
+    case 0:
+        ds[currentStructure] = new StlList<int,int>;
+        break;
+    case 1:
+        ds[currentStructure] = new StlMap<int,int>;
+        break;
+    case 2:
+        ds[currentStructure] = new StlVector<int,int>;
+        break;
+    case 3:
+        ds[currentStructure] = new DCList<int,int>;
+        break;
+    case 4:
+        ds[currentStructure] = new RBTree<int,int>;
+        break;
+    case 5:
+        ds[currentStructure] = new BplusTree<int,int>;
+        break;
+    default:
+        break;
     }
 }
 
