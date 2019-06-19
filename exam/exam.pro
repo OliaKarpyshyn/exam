@@ -26,7 +26,8 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    code.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -36,7 +37,8 @@ HEADERS += \
     rbtree.h \
     stllist.h \
     stlvector.h \
-    stlmap.h
+    stlmap.h \
+    code.h
 
 FORMS += \
         mainwindow.ui
