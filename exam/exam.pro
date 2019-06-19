@@ -34,7 +34,8 @@ HEADERS += \
     datastructure.h \
     bplustree.h \
     rbtree.h \
-    stllist.h
+    stllist.h \
+    stlvector.h
 
 FORMS += \
         mainwindow.ui
