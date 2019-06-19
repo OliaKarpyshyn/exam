@@ -5,6 +5,7 @@
 #include <QRandomGenerator>
 #include <QMessageBox>
 #include <algorithm>
+#include <chrono>
 #include <vector>
 
 
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     s = new Set;
     sort = new Sorting<int,int>;
+    ui->statusBar->showMessage(" ");
 
     ui->comboSort->addItem("Quick sort");
     ui->comboSort->addItem("Heap sort");
@@ -116,12 +118,25 @@ void MainWindow::createSet(StlList<int, int> map)
 
 }
 
+void MainWindow::setTimePassed(QString s)
+{
+    ui->statusBar->showMessage("Time:" + s + " microseconds");
+}
+
 void MainWindow::on_insbtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
+    auto begn = std::chrono::steady_clock::now();
+
     int k = QInputDialog::getInt(this, "Insert", "Enter key");
     int v = QInputDialog::getInt(this, "Insert", "Enter value");
     ds->insert(k, v);
     createImage();
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begn);
+    setTimePassed(QString::number(elapsed_ms.count()));
 
 }
 
@@ -137,38 +152,64 @@ void MainWindow::on_radioButton_2_clicked()
 
 void MainWindow::on_randBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     int k = QInputDialog::getInt(this, "Random insert", "Enter amount");
     for(int i = 0; i<k; i++)
         ds->insert(QRandomGenerator::global()->bounded(0,20), QRandomGenerator::global()->bounded(0,200));
 
     createImage();
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
 
 void MainWindow::on_removeBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     int k = QInputDialog::getInt(this, "Remove", "Enter key");
     ds->remove(k);
     createImage();
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 
 }
 
 void MainWindow::on_findBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     int k = QInputDialog::getInt(this, "Find", "Enter key");
     auto value = ds->find(k);
 
     QString message = "Key: " + QString::number(k) + "\nValue: " + QString::number(value);
     QMessageBox::information(this,"Result",message);
+
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
 
 void MainWindow::on_listBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     QMessageBox::information(this,"Keys",ds->getKeys());
 
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
 
 void MainWindow::on_unionBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     s->setLabel("Union");
     vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys();
     StlList<int,int> m;
@@ -179,10 +220,16 @@ void MainWindow::on_unionBtn_clicked()
         m.insert(get<0>(val), get<1>(val));
 
     createSet(m);
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
 
 void MainWindow::on_intrsBnt_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     s->setLabel("Intersection");
     StlList<int,int> l;
     vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(), inters;
@@ -197,14 +244,17 @@ void MainWindow::on_intrsBnt_clicked()
         l.insert(get<0>(val), get<1>(val));
 
     createSet(l);
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
-
-
-
 
 
 void MainWindow::on_sdiffBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     s->setLabel("SymDifference");
     vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(),un, inters;
     StlList<int,int> m;
@@ -231,10 +281,16 @@ void MainWindow::on_sdiffBtn_clicked()
 
     createSet(m);
 
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
+
 }
 
 void MainWindow::on_diffBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     s->setLabel("Difference");
     vector<tuple<int,int>> v1 = ds->ds[0]->getKeys(), v2 = ds->ds[1]->getKeys(), inters;
     StlList<int,int> m;
@@ -255,22 +311,33 @@ void MainWindow::on_diffBtn_clicked()
 }
 
     createSet(m);
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 }
 
 void MainWindow::on_comboSort_currentIndexChanged(int index)
 {
+    auto begin = std::chrono::steady_clock::now();
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 
 }
 
 void MainWindow::on_comboType_currentIndexChanged(int index)
 {
+    auto begin = std::chrono::steady_clock::now();
+
     ds->changeType(index);
-    QGraphicsView *view = ds->currentStructure==0? ui->graphicsView: ui->graphicsView_2;
-    if(view->scene()!=nullptr)
-    {
-        view->scene()->clear();
-        view->scene()->deleteLater();
-    }
+    clear();
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
+
+
 }
 
 void MainWindow::on_pushButton_9_clicked()
@@ -280,6 +347,8 @@ void MainWindow::on_pushButton_9_clicked()
 
 void MainWindow::on_sortBtn_clicked()
 {
+    auto begin = std::chrono::steady_clock::now();
+
     int choice = ui->comboSort->currentIndex();
     vector<tuple<int,int>> before = ds->ds[ds->currentStructure]->getKeys();
     sort->sort(before, choice);
@@ -293,5 +362,9 @@ void MainWindow::on_sortBtn_clicked()
     }
 
     createImage();
+
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    setTimePassed(QString::number(elapsed_ms.count()));
 
 }

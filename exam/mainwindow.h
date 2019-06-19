@@ -63,6 +63,7 @@ private:
     void createImage();
     void clear();
     void createSet(StlList<int, int>);
+    void setTimePassed(QString);
 };
 
 #endif // MAINWINDOW_H
