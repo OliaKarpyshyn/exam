@@ -5,6 +5,7 @@
 #include "sorting.h"
 #include "set.h"
 #include <QMainWindow>
+#include <QRandomGenerator>
 
 namespace Ui {
 class MainWindow;

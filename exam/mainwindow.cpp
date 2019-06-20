@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include <QGraphicsPixmapItem>
 #include <QInputDialog>
-#include <QRandomGenerator>
 #include <QMessageBox>
 #include <algorithm>
 #include <chrono>
@@ -330,6 +329,8 @@ void MainWindow::on_comboType_currentIndexChanged(int index)
 {
     auto begin = std::chrono::steady_clock::now();
 
+    ds->currentStructure? ui->label_2->setText(ui->comboType->currentText()):ui->label->setText(ui->comboType->currentText());
+
     ds->changeType(index);
     clear();
 
@@ -349,6 +350,8 @@ void MainWindow::on_sortBtn_clicked()
 {
     auto begin = std::chrono::steady_clock::now();
 
+    if(ui->comboType->currentIndex()!=4&&ui->comboType->currentIndex()!=5){
+
     int choice = ui->comboSort->currentIndex();
     vector<tuple<int,int>> before = ds->ds[ds->currentStructure]->getKeys();
     sort->sort(before, choice);
@@ -362,7 +365,7 @@ void MainWindow::on_sortBtn_clicked()
     }
 
     createImage();
-
+}
     auto end = std::chrono::steady_clock::now();
     auto elapsed_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
     setTimePassed(QString::number(elapsed_ms.count()));
