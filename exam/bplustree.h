@@ -625,11 +625,9 @@ vector<tuple<K,V>> BplusTree<K, V>::getKeys() {
 template <typename K, typename V>
 void BplusTree<K, V>::getElem(vector <BNode*> Nodes, vector<tuple<K,V>>& v) {
 
-
     vector <BNode*> newCells;
     for (int i = 0; i < Nodes.size(); i++) {
         BNode *curr = Nodes[i];
-
 
         int j;
         if (curr->child[0] == nullptr) {
@@ -645,8 +643,6 @@ void BplusTree<K, V>::getElem(vector <BNode*> Nodes, vector<tuple<K,V>>& v) {
             }
         if (curr->value[j] == INT_MAX && curr->child[j] != nullptr)
             newCells.push_back(curr->child[j]);
-
-
     }
 
     if (newCells.size() == 0) { //якщо немає більше синів, закінчуєм рекурсію

@@ -6,6 +6,10 @@
 #include "set.h"
 #include <QMainWindow>
 #include <QRandomGenerator>
+#include <QWheelEvent>
+#include <QGraphicsView>
+#include <QWidget>
+#include <QtWidgets>
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +69,7 @@ private:
     void clear();
     void createSet(StlList<int, int>);
     void setTimePassed(QString);
+    void wheelEvent(QWheelEvent *event);
 };
 
 #endif // MAINWINDOW_H

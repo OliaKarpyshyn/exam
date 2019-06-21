@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QGraphicsPixmapItem>
+#include <QGraphicsView>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <algorithm>
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     s = new Set;
     sort = new Sorting<int,int>;
+
+
     ui->statusBar->showMessage(" ");
 
     ui->comboSort->addItem("Quick sort");
@@ -120,6 +123,27 @@ void MainWindow::createSet(StlList<int, int> map)
 void MainWindow::setTimePassed(QString s)
 {
     ui->statusBar->showMessage("Time:" + s + " microseconds");
+}
+
+void MainWindow::wheelEvent(QWheelEvent *event){
+    if(ds->currentStructure){
+
+    ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    double scaleFactor = 1.15;
+
+    if(event->delta() > 0) ui->graphicsView->scale(scaleFactor,scaleFactor);
+    else ui->graphicsView->scale(scaleFactor,scaleFactor);
+
+    } else {
+
+        ui->graphicsView_2->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        double scaleFactor = 1.15;
+
+        if(event->delta() > 0) ui->graphicsView_2->scale(scaleFactor,scaleFactor);
+        else ui->graphicsView_2->scale(scaleFactor,scaleFactor);
+}
+
+
 }
 
 void MainWindow::on_insbtn_clicked()

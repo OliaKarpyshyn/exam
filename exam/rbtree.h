@@ -425,15 +425,14 @@ void RBTree<K,V>::remove(K x)
         }
     }
 
+    if(p == root && root->get_right()==nullptr&&root->get_left()==nullptr) {
+        root=nullptr;
+        return;
+    }
     if (found == 0)return;
     else
     {
-        cout << "\nDeleted Element: " << p->key;
-        cout << "\nColour: ";
-        if (p->color == black)
-            cout << "Black\n";
-        else
-            cout << "Red\n";
+
         if (p->left == nullptr || p->right == nullptr)
             y = p;
         else

@@ -141,9 +141,10 @@ public:
     template<typename K, typename V>        
     V DCList<K,V>::find(K val) {
         Node<K,V>*temp = head;
+        if(head)
         do{
             if (temp->getKey() == val)
-                return true;
+                return temp->getVal();
             temp = temp->getNext();
         } while (temp != head);
         return NULL;
